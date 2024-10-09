@@ -66,6 +66,8 @@ class PostController extends Controller
         ]);
 
         $post->refresh();
+
+        
         return response()->json([
             'message' => 'Post updated successfully',
             'post' => $post
@@ -82,5 +84,17 @@ class PostController extends Controller
         return response()->json([
             'message' => 'Post deleted successfully'
         ]);
+    }
+
+    public function comments($id) {
+        $post = Post::find($id);
+
+        $comments = $post->comments;
+
+        return $this->response($comments, 'Comments Found');
+        // return response()->json([
+        //     'message' => "Comments Found",
+        //     'comments' => $comments
+        // ]);
     }
 }

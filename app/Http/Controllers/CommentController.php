@@ -56,12 +56,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        return $request->input('body');
+        
+
         $comment = Comment::find($id);
 
         $comment->update([
-            'title' => $request->input('title'),
             'body' => $request->input('body'),
-            'post_id' => $request->input('post_id'),
         ]);
 
         $comment->refresh();

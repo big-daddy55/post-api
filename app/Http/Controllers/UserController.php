@@ -51,15 +51,12 @@ class UserController extends Controller
     }
 
     // Update a User
-    public function update($id, Request $request)
+    public function update(Request $request, $id)
     {
-
+        $request->all();
         $user = User::find($id);
-        
-        $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-        ]);
+
+        $user->update($request->all());
 
         $user->refresh();
         return response()->json([
@@ -76,6 +73,17 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User deleted successfully'
+        ]);
+    }
+
+    public function posts($id){
+        $user = User::find($id);
+
+        $posts = $user->posts;
+
+        return response()->json([
+            'message' => "Post Found",
+            'posts' => $posts
         ]);
     }
 }

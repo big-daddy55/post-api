@@ -21,6 +21,7 @@ Route::prefix('users')->group(function(){
     Route::post('/', [UserController::class, 'store']);
     Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'destroy']);
+    Route::get('/{id}/posts', [UserController::class, 'posts']);
 });
 Route::prefix('posts')->group(function(){
     Route::get('/', [PostController::class, 'index']);
@@ -28,4 +29,5 @@ Route::prefix('posts')->group(function(){
     Route::post('/', [PostController::class, 'store']);
     Route::patch('/{id}', [PostController::class, 'update']);
     Route::delete('/{id}', [PostController::class, 'destroy']);
+    Route::get('/{id}/comments', [PostController::class, 'comments']);
 });
